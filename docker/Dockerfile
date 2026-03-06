@@ -65,8 +65,9 @@ WORKDIR /app/ai-toolkit
 COPY requirements.txt /app/ai-toolkit/requirements.txt
 
 # Install Python dependencies
-RUN pip install --no-cache-dir --break-system-packages -r requirements.txt && \
-    pip install setuptools==69.5.1 --no-cache-dir --break-system-packages
+RUN pip install uv
+    uv pip install --no-cache-dir --break-system-packages -r requirements.txt && \
+    uv pip install setuptools==69.5.1 --no-cache-dir --break-system-packages
 
 # Build UI
 WORKDIR /app/ai-toolkit/ui
