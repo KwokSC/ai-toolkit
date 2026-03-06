@@ -64,9 +64,11 @@ WORKDIR /app/ai-toolkit
 # copy requirements.txt to leverage docker cache
 COPY requirements.txt /app/ai-toolkit/requirements.txt
 
+# install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 # Install Python dependencies
-RUN pip install uv
-    uv pip install --no-cache-dir --break-system-packages -r requirements.txt && \
+RUN uv pip install --no-cache-dir --break-system-packages -r requirements.txt && \
     uv pip install setuptools==69.5.1 --no-cache-dir --break-system-packages
 
 # Build UI
