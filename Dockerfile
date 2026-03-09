@@ -68,8 +68,8 @@ COPY requirements.txt /app/ai-toolkit/requirements.txt
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # Install Python dependencies
-RUN uv pip install --no-cache-dir --break-system-packages -r requirements.txt && \
-    uv pip install setuptools==69.5.1 --no-cache-dir --break-system-packages
+RUN uv pip install --no-cache-dir --system -r requirements.txt && \
+    uv pip install setuptools==69.5.1 --no-cache-dir --system
 
 # Build UI
 WORKDIR /app/ai-toolkit/ui
